@@ -1,0 +1,152 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/Cars/MyFord/Scene/MFord.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/HUD/RPMMeter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Texture/Asphalt2.jpg" type="Texture" id=4]
+[ext_resource path="res://Assets/Texture/AsphaltTexture.jpg" type="Texture" id=5]
+
+[sub_resource type="PlaneShape" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 5 )
+uv1_scale = Vector3( 250, 250, 250 )
+
+[sub_resource type="PlaneMesh" id=3]
+material = SubResource( 2 )
+size = Vector2( 1000, 1000 )
+subdivide_width = 10
+subdivide_depth = 10
+
+[sub_resource type="Curve3D" id=4]
+_data = {
+"points": PoolVector3Array( 21.5325, -3.27177, 6.25211, -21.5325, 3.27177, -6.25211, -29.1238, 1.93717, -12.0187, 19.879, 2.11902, 36.6453, -19.879, -2.11902, -36.6453, -129.157, 6.86646e-05, 25.5137, -5.31996, -0.582901, 17.4546, 5.31996, 0.582901, -17.4546, -84.8824, -2.05094, -9.91841, 4.62277, -2.06564, 15.8917, -4.62277, 2.06564, -15.8917, -93.8485, 1.01219, -38.5023, -36.4458, -18.8675, 4.14204, 36.4458, 18.8675, -4.14204, -91.9729, -0.790535, -104.482, -30.7458, -3.74191, -21.4502, 30.7458, 3.74191, 21.4502, -47.091, -1.72508, -45.1261, -3.46776, -3.04455, 23.4048, 3.46776, 3.04455, -23.4048, 8.70582, -2.70745, -31.2055, -6.10469, 0.827935, 17.8058, 6.10469, -0.827935, -17.8058, -34.5521, 1.83286, -75.82, -6.23934, 0.00374979, -0.694901, 6.23934, -0.00374979, 0.694901, 7.02486, -2.33909, -94.9666, -7.1334, 1.37367, -17.1701, 7.1334, -1.37367, 17.1701, 26.538, -2.55752, -63.5467, -11.33, -0.305756, -10.1607, 11.33, 0.305756, 10.1607, 52.0149, 7.81807, -34.9004, -0.722862, 0, -16.8668, 0.722862, 0, 16.8668, 62.2472, 1.38214, -1.46652, 9.91087, 7.62939e-06, -3.0495, -9.91087, -7.62939e-06, 3.0495, 44.2572, -2.28882e-05, 35.222, 13.0359, 0.313869, 4.8989, -13.0359, -0.313869, -4.8989, 22.5137, 1.9515, 27.2161, 12.5514, -1.00669, -9.53053, -12.5514, 1.00669, 9.53053, -3.76834, 0.248796, 52.0469, -9.60061, 11.8545, -38.4745, 9.60061, -11.8545, 38.4745, -46.1119, -5.85497, 99.5347, 10.6965, 7.71696, -42.3823, -10.6965, -7.71696, 42.3823, 19.2926, -7.11772, 135.274, 18.9184, 0.000143051, 14.8599, -18.9184, -0.000143051, -14.8599, -74.3927, 5.69939, 132.998, -0.161301, -0.317318, 19.2744, 0.161301, 0.317318, -19.2744, -92.2135, 7.62939e-05, 59.9944, -1.1385, -0.138491, 16.4088, 1.1385, 0.138491, -16.4088, -9.66294, -7.62939e-06, 14.8888, 0, 0, 0, 0, 0, 0, -24.0174, 1.97944, -10.3291 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="Shader" id=5]
+code = "shader_type spatial;
+
+uniform sampler2D road_texture;
+
+void fragment(){
+	vec2 road_uv = vec2(UV.y, UV.x);
+	
+	vec4 color = texture(road_texture, road_uv);
+	ALBEDO = color.rgb;
+	METALLIC = 0.0;
+	ROUGHNESS = 0.8;
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/road_texture = ExtResource( 4 )
+
+[sub_resource type="Curve3D" id=7]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 375.838, -81.5826, -2.65056, 0, 0, 0, 0, 0, 0, -278.215, -81.5817, -1.0398 ),
+"tilts": PoolRealArray( 0, 0 )
+}
+
+[node name="Main" type="Spatial"]
+
+[node name="Ground" type="StaticBody" parent="."]
+visible = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Ground"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.827, 0, -0.118 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.879812, 0.475322, 0, -0.475322, 0.879812, 0, 4.15619, 0.504202 )
+shadow_enabled = true
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.806394, -0.0999335, 0.582874, -0.139906, 0.925402, 0.352217, -0.574591, -0.365573, 0.732258, 66.9266, 35.4875, -107.983 )
+fov = 78.6
+near = 0.85
+far = 145.0
+script = ExtResource( 3 )
+follow_this_path = NodePath("../CarMain/Car")
+target_distance = 5.0
+target_height = 3.0
+
+[node name="Track" type="Spatial" parent="."]
+
+[node name="Path" type="Path" parent="Track"]
+transform = Transform( 0.999873, -0.00163886, -0.0158825, 0.00150914, 0.999965, -0.00817627, 0.0158953, 0.00815126, 0.99984, 2.88312, 25.7474, -3.89366 )
+curve = SubResource( 4 )
+
+[node name="Road" type="CSGPolygon" parent="Track/Path"]
+use_collision = true
+invert_faces = true
+polygon = PoolVector2Array( -7, 0, 0, 0.1, 7, 0.1, 2, 0 )
+mode = 2
+path_node = NodePath("..")
+path_interval = 1.0
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = true
+material = SubResource( 6 )
+
+[node name="CollisionShape" type="CSGPolygon" parent="Track/Path"]
+transform = Transform( 1, 5.23869e-10, 9.31323e-09, -8.73115e-11, 1, 4.65661e-09, -9.31323e-09, 0, 1, 0, 0, 0 )
+use_collision = true
+polygon = PoolVector2Array( -7, 0, 7, 0, 7, 2, 7, 2, 7, -1, -7, -1, -8, 2, -7, 1 )
+mode = 2
+path_node = NodePath("..")
+path_interval = 1.0
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = true
+
+[node name="CarMain" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 741.787, 60.0427, -1.20497 )
+
+[node name="Car" parent="CarMain" instance=ExtResource( 1 )]
+rpmmeter = NodePath("../../RPMMeter")
+
+[node name="TrackSpeed" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 374.903, 141.535, 0 )
+
+[node name="Path" type="Path" parent="TrackSpeed"]
+curve = SubResource( 7 )
+
+[node name="RoadSpeed" type="CSGPolygon" parent="TrackSpeed/Path"]
+transform = Transform( 0.999873, -0.00163886, -0.0158825, 0.00150914, 0.999965, -0.00817627, 0.0158953, 0.00815126, 0.99984, -372.02, -55.8343, -3.89366 )
+use_collision = true
+invert_faces = true
+polygon = PoolVector2Array( -7, 0, 0, 0.1, 7, 0.1, 2, 0 )
+mode = 2
+path_node = NodePath("..")
+path_interval = 1.0
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = true
+material = SubResource( 6 )
+
+[node name="CollisionShape2" type="CSGPolygon" parent="TrackSpeed/Path"]
+transform = Transform( 0.999873, -0.00163886, -0.0158825, 0.00150914, 0.999965, -0.00817627, 0.0158953, 0.00815126, 0.99984, -372.02, -115.788, -3.89366 )
+use_collision = true
+polygon = PoolVector2Array( -7, 0, 7, 0, 7, 2, 7, 2, 7, -1, -7, -1, -8, 2, -7, 1 )
+mode = 2
+path_node = NodePath("..")
+path_interval = 1.0
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = true
+
+[node name="RPMMeter" parent="." instance=ExtResource( 2 )]
+margin_left = 1542.0
+margin_top = 739.0
+margin_right = 1542.0
+margin_bottom = 739.0
+rect_scale = Vector2( 2, 2 )

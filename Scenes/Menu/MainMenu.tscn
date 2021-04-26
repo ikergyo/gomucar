@@ -1,0 +1,376 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Assets/Texture/MainMenu_background_styleboxtexture.tres" type="StyleBox" id=1]
+[ext_resource path="res://Assets/Pictures/Menu/SinglePlayer.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Pictures/Menu/SinglePlayerHover.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Pictures/Menu/Multiplayer.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Pictures/Menu/MultiplayerHoover.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Pictures/Menu/Title.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/MenuControllers/MainMenuController.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Themes/80sTheme.tres" type="Theme" id=8]
+[ext_resource path="res://Assets/GUI/MenuElements/MapThumbs/MapThumbTemplate.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/GUI/MenuElements/SettingLines/InheritedLines/NickNameLine.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/GUI/MenuElements/MapThumbs/InheritsMaps/MainTestMap.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/GUI/MenuElements/SettingLines/InheritedLines/AIPlayerNumLine.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Pictures/Menu/JoinHoover.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Pictures/Menu/Join.png" type="Texture" id=14]
+[ext_resource path="res://Scripts/MenuControllers/MultiplayerPanelController.gd" type="Script" id=15]
+[ext_resource path="res://Assets/Pictures/Menu/CreateHostHoover.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Pictures/Menu/CreateHost.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Fonts/Tres/Discovery_30.tres" type="DynamicFont" id=18]
+[ext_resource path="res://Assets/Fonts/Tres/SuperMarioa_20.tres" type="DynamicFont" id=19]
+[ext_resource path="res://Assets/GUI/MenuElements/LobbyPlayer/lobbyPlayerTemplate.tscn" type="PackedScene" id=20]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+mainStartMenuPath = NodePath("MainStartMenu")
+singleMapSelectionPanelPath = NodePath("SingleSelectMap")
+multiplayerPanelPath = NodePath("MultiplayerPanel")
+singlePlayButtonPath = NodePath("MainStartMenu/SinglePlayerButton")
+multiplayerPlayButtonPath = NodePath("MainStartMenu/MultiplayerButton")
+singleStartGameButtonPath = NodePath("SingleSelectMap/SingleVbox/StartGameButton")
+mapListGridPath = NodePath("SingleSelectMap/SingleVbox/SingleHBox/MapListScrollContainer/MapListContainer")
+mapThumbnailTemplatePath = ExtResource( 9 )
+map_scenes = [ ExtResource( 11 ) ]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+modulate = Color( 1, 0, 0.937255, 1 )
+margin_left = 4.6778
+margin_top = 0.617676
+margin_right = 1920.68
+margin_bottom = 1078.62
+custom_styles/panel = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="TextureRect" parent="."]
+margin_left = 323.765
+margin_top = 16.9508
+margin_right = 1671.77
+margin_bottom = 305.951
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainStartMenu" type="Node2D" parent="."]
+
+[node name="SinglePlayerButton" type="TextureButton" parent="MainStartMenu"]
+margin_left = 65.0613
+margin_top = 382.82
+margin_right = 464.061
+margin_bottom = 486.82
+texture_normal = ExtResource( 2 )
+texture_hover = ExtResource( 3 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MultiplayerButton" type="TextureButton" parent="MainStartMenu"]
+margin_left = 63.0
+margin_top = 567.0
+margin_right = 455.0
+margin_bottom = 671.0
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SingleSelectMap" type="PanelContainer" parent="."]
+visible = false
+modulate = Color( 0.454902, 0.160784, 0.807843, 0.807843 )
+margin_left = 414.0
+margin_top = 335.0
+margin_right = 1565.0
+margin_bottom = 1047.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SingleVbox" type="VBoxContainer" parent="SingleSelectMap"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1144.0
+margin_bottom = 705.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="SingleSelectMap/SingleVbox"]
+margin_right = 1137.0
+margin_bottom = 120.0
+theme = ExtResource( 8 )
+text = "Select a map"
+align = 1
+valign = 1
+
+[node name="StartGameButton" type="Button" parent="SingleSelectMap/SingleVbox"]
+margin_top = 124.0
+margin_right = 1137.0
+margin_bottom = 144.0
+text = "Start"
+
+[node name="SingleHBox" type="HBoxContainer" parent="SingleSelectMap/SingleVbox"]
+margin_top = 148.0
+margin_right = 1137.0
+margin_bottom = 698.0
+rect_min_size = Vector2( 1130, 550 )
+
+[node name="MapListScrollContainer" type="ScrollContainer" parent="SingleSelectMap/SingleVbox/SingleHBox"]
+margin_right = 550.0
+margin_bottom = 550.0
+rect_min_size = Vector2( 550, 500 )
+
+[node name="MapListContainer" type="VBoxContainer" parent="SingleSelectMap/SingleVbox/SingleHBox/MapListScrollContainer"]
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SingleSelectMap/SingleVbox/SingleHBox"]
+margin_left = 554.0
+margin_right = 1104.0
+margin_bottom = 550.0
+rect_min_size = Vector2( 550, 0 )
+
+[node name="SingleSettingsContainer" type="VBoxContainer" parent="SingleSelectMap/SingleVbox/SingleHBox/ScrollContainer"]
+margin_right = 550.0
+margin_bottom = 164.0
+rect_min_size = Vector2( 550, 80 )
+
+[node name="NameLine" parent="SingleSelectMap/SingleVbox/SingleHBox/ScrollContainer/SingleSettingsContainer" instance=ExtResource( 10 )]
+script = null
+
+[node name="AIPlayerNumLine" parent="SingleSelectMap/SingleVbox/SingleHBox/ScrollContainer/SingleSettingsContainer" instance=ExtResource( 12 )]
+margin_top = 84.0
+margin_bottom = 164.0
+
+[node name="MultiplayerPanel" type="PanelContainer" parent="."]
+visible = false
+modulate = Color( 0.454902, 0.160784, 0.807843, 0.807843 )
+margin_left = 414.0
+margin_top = 335.0
+margin_right = 1565.0
+margin_bottom = 1017.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+mainMultiplayerPanelPath = NodePath("MainMultiplayerMenu")
+joinPanelPath = NodePath("JoinPanel")
+hostPanelPath = NodePath("HostPanel")
+lobbyPanelPath = NodePath("Lobby")
+ipAddressPath = NodePath("JoinPanel/IpAddressText")
+serverNamePath = NodePath("HostPanel/serverNameText")
+maxPlayersPath = NodePath("HostPanel/maxPlayerText")
+lobbyPlayerList = NodePath("Lobby/MultiHBox/PlayerList/VBoxContainer")
+lobbyPlayerTemplate = ExtResource( 20 )
+
+[node name="MainMultiplayerMenu" type="Panel" parent="MultiplayerPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1144.0
+margin_bottom = 675.0
+
+[node name="MultiTitle" type="Label" parent="MultiplayerPanel/MainMultiplayerMenu"]
+margin_right = 1137.0
+margin_bottom = 120.0
+theme = ExtResource( 8 )
+text = "Multiplayer"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Join" type="TextureButton" parent="MultiplayerPanel/MainMultiplayerMenu"]
+margin_left = 73.4605
+margin_top = 304.725
+margin_right = 381.461
+margin_bottom = 369.725
+texture_normal = ExtResource( 14 )
+texture_hover = ExtResource( 13 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Host" type="TextureButton" parent="MultiplayerPanel/MainMultiplayerMenu"]
+margin_left = 708.758
+margin_top = 296.563
+margin_right = 1016.76
+margin_bottom = 361.563
+texture_normal = ExtResource( 17 )
+texture_hover = ExtResource( 16 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lobby" type="VBoxContainer" parent="MultiplayerPanel"]
+visible = false
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1144.0
+margin_bottom = 685.0
+
+[node name="LobbyTitle" type="Label" parent="MultiplayerPanel/Lobby"]
+margin_right = 1137.0
+margin_bottom = 120.0
+theme = ExtResource( 8 )
+text = "Lobby"
+align = 1
+valign = 1
+
+[node name="StartMultiplayerButton" type="Button" parent="MultiplayerPanel/Lobby"]
+margin_top = 124.0
+margin_right = 1137.0
+margin_bottom = 174.0
+rect_min_size = Vector2( 1137, 50 )
+text = "Start"
+
+[node name="MultiHBox" type="HBoxContainer" parent="MultiplayerPanel/Lobby"]
+margin_top = 178.0
+margin_right = 1137.0
+margin_bottom = 678.0
+
+[node name="PlayerList" type="ScrollContainer" parent="MultiplayerPanel/Lobby/MultiHBox"]
+margin_right = 550.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 550, 500 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerPanel/Lobby/MultiHBox/PlayerList"]
+margin_right = 550.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="JoinPanel" type="Panel" parent="MultiplayerPanel"]
+visible = false
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1144.0
+margin_bottom = 685.0
+
+[node name="JoinTitle" type="Label" parent="MultiplayerPanel/JoinPanel"]
+margin_right = 1137.0
+margin_bottom = 120.0
+theme = ExtResource( 8 )
+text = "Join"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IpAddressText" type="LineEdit" parent="MultiplayerPanel/JoinPanel"]
+margin_left = 48.2281
+margin_top = 272.104
+margin_right = 610.228
+margin_bottom = 369.104
+custom_fonts/font = ExtResource( 19 )
+align = 1
+
+[node name="JoinButton" type="TextureButton" parent="MultiplayerPanel/JoinPanel"]
+margin_left = 692.309
+margin_top = 271.123
+margin_right = 1036.31
+margin_bottom = 363.123
+texture_normal = ExtResource( 14 )
+texture_hover = ExtResource( 13 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HostPanel" type="Panel" parent="MultiplayerPanel"]
+visible = false
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1144.0
+margin_bottom = 685.0
+
+[node name="HostTitle" type="Label" parent="MultiplayerPanel/HostPanel"]
+margin_right = 1137.0
+margin_bottom = 120.0
+theme = ExtResource( 8 )
+text = "Create Server"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HostButton" type="TextureButton" parent="MultiplayerPanel/HostPanel"]
+margin_left = 394.013
+margin_top = 540.859
+margin_right = 738.014
+margin_bottom = 632.859
+texture_normal = ExtResource( 17 )
+texture_hover = ExtResource( 16 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="serverNameLabel" type="Label" parent="MultiplayerPanel/HostPanel"]
+margin_left = 98.0
+margin_top = 187.56
+margin_right = 392.0
+margin_bottom = 233.56
+custom_fonts/font = ExtResource( 18 )
+text = "Server name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="maxPlayerLabel" type="Label" parent="MultiplayerPanel/HostPanel"]
+margin_left = 100.0
+margin_top = 303.0
+margin_right = 428.0
+margin_bottom = 349.0
+custom_fonts/font = ExtResource( 18 )
+text = "Max players"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="serverNameText" type="LineEdit" parent="MultiplayerPanel/HostPanel"]
+margin_left = 531.0
+margin_top = 168.0
+margin_right = 1055.0
+margin_bottom = 240.0
+custom_fonts/font = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="maxPlayerText" type="LineEdit" parent="MultiplayerPanel/HostPanel"]
+margin_left = 533.156
+margin_top = 273.413
+margin_right = 708.156
+margin_bottom = 347.413
+custom_fonts/font = ExtResource( 19 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="MainStartMenu/SinglePlayerButton" to="." method="_on_SinglePlayerButton_pressed"]
+[connection signal="pressed" from="MainStartMenu/MultiplayerButton" to="." method="_on_MultiplayerButton_pressed"]
+[connection signal="pressed" from="SingleSelectMap/SingleVbox/StartGameButton" to="." method="_on_SingleStartGameButton_pressed"]
+[connection signal="hide" from="MultiplayerPanel" to="." method="_on_MultiplayerPanel_hide"]
+[connection signal="pressed" from="MultiplayerPanel/MainMultiplayerMenu/Join" to="MultiplayerPanel" method="_on_to_Join_panel_pressed"]
+[connection signal="pressed" from="MultiplayerPanel/MainMultiplayerMenu/Host" to="MultiplayerPanel" method="_on__to_Host_panel_pressed"]
+[connection signal="pressed" from="MultiplayerPanel/JoinPanel/JoinButton" to="MultiplayerPanel" method="_on_JoinButton_pressed"]
+[connection signal="pressed" from="MultiplayerPanel/HostPanel/HostButton" to="MultiplayerPanel" method="_on_HostButton_pressed"]

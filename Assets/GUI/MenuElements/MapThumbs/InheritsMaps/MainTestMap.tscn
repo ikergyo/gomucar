@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/GUI/MenuElements/MapThumbs/MapThumbTemplate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Maps/MainTestMap.tscn" type="PackedScene" id=2]
+
+
+[node name="MainTestMap" instance=ExtResource( 1 )]
+labelTexturePath = NodePath("../MainTestMap/LabelTexture")
+mapThumbnailPath = NodePath("../MainTestMap/MapThumbnail")
+selectedtexturePath = NodePath("../MainTestMap/SelectedTexture")
+gameSceneReferencePath = ExtResource( 2 )

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/GUI/MenuElements/SettingLines/TemplateLine.tscn" type="PackedScene" id=1]
+
+[node name="AIPlayerNumLine" instance=ExtResource( 1 )]
+is_edit_only_num = true
+
+[node name="Label" parent="." index="0"]
+margin_right = 401.0
+text = "AI PLAYERS Count"
+
+[node name="Edit" parent="." index="1"]
+margin_left = 405.0
+rect_min_size = Vector2( 100, 0 )
+text = "0"
+max_length = 2

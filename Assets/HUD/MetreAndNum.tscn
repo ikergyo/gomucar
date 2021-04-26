@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/HUD/RPMMeter/OneMetr.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Fonts/Uniqueen Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/UIElements/RPMMeter/MetreAndNum.gd" type="Script" id=3]
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+outline_color = Color( 0.176471, 0.47451, 0.560784, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+Label/colors/font_color = Color( 0.619608, 0.337255, 0.847059, 1 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+Label/constants/line_spacing = 3
+Label/constants/shadow_as_outline = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/fonts/font = null
+Label/styles/normal = null
+
+[node name="NinePatchRect" type="NinePatchRect"]
+margin_right = 3.0
+margin_bottom = 52.0
+rect_pivot_offset = Vector2( 1.5, 51 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+infoLabel = NodePath("Label2D/Label")
+parentLabel = NodePath("Label2D")
+
+[node name="Metr" type="TextureRect" parent="."]
+margin_left = 0.839817
+margin_top = 1.38917
+margin_right = 3.83982
+margin_bottom = 7.38917
+rect_min_size = Vector2( 1.5, 3.5 )
+texture = ExtResource( 1 )
+expand = true
+flip_h = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2D" type="Node2D" parent="."]
+position = Vector2( 1.80169, 10.0419 )
+
+[node name="Label" type="Label" parent="Label2D"]
+margin_left = -1.93666
+margin_top = -1.3017
+margin_right = 44.0633
+margin_bottom = 58.6983
+rect_scale = Vector2( 0.108806, 0.11819 )
+theme = SubResource( 2 )
+text = "12"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Fonts/Tres/SuperMarioa_20.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/Menu/lobbyPlayerTemplate.gd" type="Script" id=2]
+
+[node name="lobbyPlayer" type="HBoxContainer"]
+rect_min_size = Vector2( 550, 50 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+idPath = NodePath("id")
+playerNamePath = NodePath("playerName")
+readyButtonPath = NodePath("readyButton")
+
+[node name="id" type="Label" parent="."]
+margin_right = 110.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 80, 50 )
+custom_fonts/font = ExtResource( 1 )
+text = "23415132"
+align = 1
+valign = 1
+
+[node name="playerName" type="Label" parent="."]
+margin_left = 114.0
+margin_right = 314.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 200, 50 )
+custom_fonts/font = ExtResource( 1 )
+text = "sdf"
+align = 1
+valign = 1
+
+[node name="readyButton" type="Button" parent="."]
+margin_left = 318.0
+margin_right = 550.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Ready"
+[connection signal="pressed" from="readyButton" to="." method="_on_readyButton_pressed"]
