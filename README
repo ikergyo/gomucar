@@ -1,0 +1,12 @@
+Already done
+ - One car model.
+ - Main menu, with map choosing.
+ - Base car physics has been implemented with manual shifting.
+ - Base network code.
+ - Prepared base nodes for the easier extension. UI element base scripts, car properties, like engine, brake, shift configuration.
+
+
+TODO
+ - Car physics: engine break is missing and too much force wasted in the car rotation
+ - Inputs should be reorganized.
+ - Networking
