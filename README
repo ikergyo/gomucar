@@ -4,9 +4,15 @@ Already done
  - Base car physics has been implemented with manual shifting.
  - Base network code.
  - Prepared base nodes for the easier extension. UI element base scripts, car properties, like engine, brake, shift configuration.
+ - The car prepared to use as a moduler way, like engine, break, etc can be changeble.
 
 
 TODO
  - Car physics: engine break is missing and too much force wasted in the car rotation
+ - Car colliders (it has just one box becuase of the testing)
  - Inputs should be reorganized.
  - Networking
+
+# Usage
+Download Godot, and open the project -> start it with F5. In the menus choose Singleplayer and you can choose a map. Map selection has been implemented. With the start button, the game will start.
+It has only one test map. Shifting up is working with Shift key, shifting down with the Ctrl key.
